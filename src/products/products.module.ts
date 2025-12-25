@@ -6,6 +6,8 @@ import {
   CreateProductUseCase,
   GetAlProductUseCase,
   FindProductByTermUseCase,
+  UpdateProductUseCase,
+  DeleteProductUseCase,
 } from './use-cases';
 
 @Module({
@@ -16,6 +18,8 @@ import {
     CreateProductUseCase,
     GetAlProductUseCase,
     FindProductByTermUseCase,
+    UpdateProductUseCase,
+    DeleteProductUseCase,
   ],
 })
 export class ProductsModule {}

@@ -1,15 +1,25 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+model Product {
+  id          String      @id @default(uuid())
+  title       String      @unique
+  description String?
+  price       Float       @default(0)
+  stock       Int         @default(0)
+  slug        String      @unique
+  sizes       ValidSizes[]
+  tags        String[]
+  type        ValidTypes  @default(shirts)
+  gender      ValidGender
+  available   Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 }
 
 enum ValidSizes {
@@ -30,25 +40,8 @@ enum ValidTypes {
 }
 
 enum ValidGender {
-  men
-  women
-  kid
-  unisex
+  MEN
+  WOMEN
+  KID
+  UNISEX
 }
-
-
-model Product {
-  id          String      @id @default(uuid())
-  title       String      @unique
-  description String?
-  price       Float       @default(0)
-  stock       Int         @default(0)
-  slug        String      @unique
-  sizes       ValidSizes[]
-  tags        String[]
-  type        ValidTypes  @default(shirts)
-  gender      ValidGender
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-}
-

@@ -9,30 +9,7 @@ import {
   Min,
   MinLength,
 } from 'class-validator';
-
-enum ValidSizes {
-  XS = 'XS',
-  S = 'S',
-  M = 'M',
-  L = 'L',
-  XL = 'XL',
-  XXL = 'XXL',
-  XXXL = 'XXXL',
-}
-
-enum ValidTypes {
-  SHIRTS = 'shirts',
-  PANTS = 'pants',
-  HOODIES = 'hoodies',
-  HATS = 'hats',
-}
-
-enum ValidGender {
-  MEN = 'men',
-  WOMEN = 'women',
-  KID = 'kid',
-  UNISEX = 'unisex',
-}
+import { ValidSizes, ValidTypes, ValidGender } from '@prisma/client';
 
 export class CreateProductDto {
   @IsOptional()
