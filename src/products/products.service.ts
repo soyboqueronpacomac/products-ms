@@ -1,23 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductDto, UpdateProductDto } from './dto';
-import { CreateProductUseCase, GetAlProductUseCase } from './use-cases';
+import {
+  CreateProductUseCase,
+  GetAlProductUseCase,
+  FindProductByTermUseCase,
+} from './use-cases';
+import { PaginationDto } from 'src/common/dtos/pagination.dto';
 
 @Injectable()
 export class ProductsService {
   constructor(
     private readonly createProductUseCase: CreateProductUseCase,
     private readonly getAllProductUseCase: GetAlProductUseCase,
+    private readonly findProductByTermUseCase: FindProductByTermUseCase,
   ) {}
 
   async create(createProductDto: CreateProductDto) {
     return this.createProductUseCase.execute(createProductDto);
   }
-  findAll() {
-    return this.getAllProductUseCase.execute();
+  findAll(paginationDto: PaginationDto) {
+    return this.getAllProductUseCase.execute(paginationDto);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  findOne(term: string) {
+    return this.findProductByTermUseCase.execute(term);
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {
